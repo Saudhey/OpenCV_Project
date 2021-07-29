@@ -26,8 +26,8 @@ if add_selectbox == "About":
     st.write("This app is been designed to perform various OpenCV operations. The operations include:")
     st.write("1. Image conversion to grayscale")
     st.write("2. Face Meshing")
-    st.write("3. Face Recognition using webcam feed")
-    st.write("4. Set an background image for camera feed")
+    st.write("3. Face Recognition using your webcam feed")
+    st.write("4. Set an background image for with your webcam feed")
     st.write("Select an option from the sidebar")
 
 
