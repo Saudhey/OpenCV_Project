@@ -4,4 +4,5 @@ mediapipe==0.8.6.2
 Pillow==8.3.1
 numpy==1.21.1
 opencv-python==4.5.3.56
+opencv-contrib-python==4.5.3.56
 streamlit==0.85.1
