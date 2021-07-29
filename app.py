@@ -27,7 +27,7 @@ if add_selectbox == "About":
     st.write("1. Image conversion to grayscale")
     st.write("2. Face Meshing")
     st.write("3. Face Recognition using your webcam feed")
-    st.write("4. Set an background image for with your webcam feed")
+    st.write("4. Set an background image for your webcam feed")
     st.write("Select an option from the sidebar")
 
 
@@ -118,7 +118,7 @@ elif add_selectbox == "Grayscale Conversion":
 
 ##################################################FACE MESHING################################################
 elif add_selectbox == "Face Meshing":
-    image_file_path = st.sidebar.file_uploader("Upload image")
+    image_file_path = st.sidebar.file_uploader("Upload an image")
     st.title("Face Meshing")
     if image_file_path is not None:
         image = np.array(Image.open(image_file_path))
@@ -133,7 +133,7 @@ elif add_selectbox == "Face Meshing":
 
 ####################################### BACKGROUND ##################################################
 elif add_selectbox == "Set Background":
-    image_file_path = st.sidebar.file_uploader("Upload background")
+    image_file_path = st.sidebar.file_uploader("Upload a background")
     st.title("Set a background")
     if image_file_path is not None:
         bg_image = np.array(Image.open(image_file_path))
