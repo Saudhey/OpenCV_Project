@@ -54,16 +54,16 @@ elif add_selectbox == "Face Recognition":
     known_face_names = ["Chris Evans","Robert Downey Jr","Saudhey Burra"]
 
     recog = st.sidebar.button("Start Recognition")
-    run = st.checkbox("Run Camera")
+#     run = st.checkbox("Run Camera")
     
-    if recog:
+   
         FRAME_WINDOW = st.image([])         
         cap = cv2.VideoCapture(0)        #Gets a refernce to webcam 0
 
-        while run:
+        while cap.isOpened():
             flag, frame = cap.read()     #Reading frame by frame
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)      #cnvts to RGB
-            small_frame = cv2.resize(frame, (0, 0), fx = 0.25, fy = 0.25)  #Resizing the image for faster processing
+            frame = frame[:, :, ::-1]      #cnvts to RGB
+            small_frame = cv2.resize(frame, (0, 0), fx = 0.25, fy = 0.25)  #Resizing the image for faster processing 
 
             #Extracting all the faces and their encodings for a single frame
             face_locations = face_recognition.face_locations(small_frame)              
@@ -80,7 +80,7 @@ elif add_selectbox == "Face Recognition":
                 if matches[best_match_index]:                                   
                     name = known_face_names[best_match_index]  
                 face_names.append(name)
-
+        
             #To display the results
             for (top, right, bottom, left), name in zip(face_locations, face_names):
                 # Scale back up face locations since the frame we detected in was scaled to 1/4 size
@@ -90,16 +90,16 @@ elif add_selectbox == "Face Recognition":
                 left *= 4
 
                 #For the box around the faces
-                cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+                cv2.rectangle(frame.astype(np.int32), (left, top), (right, bottom), (0, 0, 255), 2)
 
                 #For the label with a name below the face
-                cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
+                cv2.rectangle(frame.astype(np.int32), (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
                 font = cv2.FONT_HERSHEY_DUPLEX
-                cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+                cv2.putText(frame.astype(np.int32), name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
             FRAME_WINDOW.image(frame)
 
-        else:
-            st.write('Camera not found')    
+    else:
+        st.write('Camera not found')      
 
 ############################################## GRAYSCALE SECTION################################################################
 elif add_selectbox == "Grayscale Conversion":
