@@ -56,11 +56,11 @@ elif add_selectbox == "Face Recognition":
     recog = st.sidebar.button("Start Recognition")
     run = st.checkbox("Run Camera")
     
-    while run:
+    if recog:
         FRAME_WINDOW = st.image([])         
         cap = cv2.VideoCapture(0)        #Gets a refernce to webcam 0
 
-        if recog:
+        while run:
             flag, frame = cap.read()     #Reading frame by frame
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)      #cnvts to RGB
             small_frame = cv2.resize(frame, (0, 0), fx = 0.25, fy = 0.25)  #Resizing the image for faster processing
