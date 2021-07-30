@@ -158,7 +158,3 @@ elif add_selectbox == "Set Background":
                 bg_image = cv2.resize(bg_image, (frame.shape[1], frame.shape[0]))
                 output_image = np.where(condition, frame, bg_image)
             FRAME_WINDOW.image(output_image)        
-
-
-
-cv2.destroyAllWindows()
