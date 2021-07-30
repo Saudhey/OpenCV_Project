@@ -6,4 +6,3 @@ numpy==1.21.1
 opencv-python==4.5.3.56
 opencv-python-headless==4.5.3.56
 streamlit==0.85.1
-python==3.8.0
